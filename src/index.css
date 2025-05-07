@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 4em; /* Default margin */
+  font-family: "Arial MT Light", "Arial MT Light Italic", "Arial MT Condensed Light", "Arial MT Italic", "Arial MT Condensed", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fffdfd;
+}
+
+body.panel-mode {
+  margin: 0; /* Margin for PanelMode */
+}
+
+/* Mobile view styles */
+@media (max-width: 768px) {
+  body {
+    margin: 1em; /* Reduced margin for mobile view */
+    font-size: 14px; /* Adjust font size for better readability */
+  }
+
+  .container {
+    padding: 1em; /* Add padding to container */
+  }
+
+  .header {
+    font-size: 1.5em; /* Adjust header font size */
+    text-align: center; /* Center align header text */
+  }
+
+  .content {
+    font-size: 1em; /* Adjust content font size */
+    padding: 0.5em; /* Add padding to content */
+  }
+
+  .logo2-container {
+    position: relative; /* Change to relative positioning for mobile view */
+    top: 0; /* Reset top position */
+    left: 0; /* Reset left position */
+    padding: 5px; /* Adjust padding for mobile view */
+    margin: 0 auto; /* Center the logo container */
+    width: 100%; /* Ensure the logo container takes full width */
+    text-align: center; /* Center align the content inside the logo container */
+  }
+
+  .button {
+    width: 100%; /* Make buttons full width */
+    padding: 0.5em; /* Adjust button padding */
+    font-size: 1em; /* Adjust button font size */
+  }
+
+  .card {
+    margin-bottom: 1em; /* Add margin between cards */
+    padding: 1em; /* Add padding to cards */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow to cards */
+  }
+
+  .list-item {
+    padding: 0.5em; /* Adjust list item padding */
+    font-size: 0.9em; /* Adjust list item font size */
+    border-bottom: 1px solid #ddd; /* Add border to list items */
+  }
+
+  .footer {
+    font-size: 0.8em; /* Adjust footer font size */
+    text-align: center; /* Center align footer text */
+    padding: 1em; /* Add padding to footer */
+  }
+}
