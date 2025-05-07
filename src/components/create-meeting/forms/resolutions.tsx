@@ -64,7 +64,7 @@ export default function Resolution() {
               <SelectContent>
                 <SelectItem value="budget">Budget Approval</SelectItem>
                 <SelectItem value="policy">Policy Update</SelectItem>
-                <SelectItem value="election">Board Election</SelectItem>
+                <SelectItem value="election">Board Electi   on</SelectItem>
               </SelectContent>
             </Select>
           </div>
