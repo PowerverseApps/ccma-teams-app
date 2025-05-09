@@ -1,4 +1,4 @@
-import { Image, Separator, Stack, Text } from "@fluentui/react";
+import { Image, Separator, Stack } from "@fluentui/react";
 import { ArrowLeft } from "lucide-react"; // Import arrow icon
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,9 +13,6 @@ const sidebarNavItems = [
   },
   {
     title: "Resolutions",
-  },
-  {
-    title: "Participants",
   },
 ];
 
@@ -138,6 +135,20 @@ export default function CreateMeetingLayout({ children }: CreateMeetingLayoutPro
           </Stack>
         </Stack>
       </Stack>
+      <div className="flex justify-end mt-6">
+        <Button
+          style={{
+            padding: "0.5rem 1rem",
+            backgroundColor: "var(--primary)",
+            color: "var(--primary-foreground)",
+            borderRadius: "var(--radius)",
+            cursor: "pointer",
+          }}
+          onClick={() => console.log("Footer button clicked")}
+        >
+          Create Meeting
+        </Button>
+      </div>
     </Stack>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { X } from "lucide-react";
 import { Button } from "../../ui/button";
@@ -13,51 +13,63 @@ interface Option {
   text: string;
 }
 
-export default function Resolution() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [agendaItem, setAgendaItem] = useState("");
-  const [options, setOptions] = useState<Option[]>([{
-    id: 1,
-    text: "Yes"
-  }, {
-    id: 2,
-    text: "No"
-  }]);
+interface ResolutionsProps {
+  resolutions: {
+    title: string;
+    description: string;
+    agendaItem: string;
+    options: Option[];
+  };
+  updateResolutions: (resolutions: {
+    title: string;
+    description: string;
+    agendaItem: string;
+    options: Option[];
+  }) => void;
+}
 
+export default function Resolution({ resolutions, updateResolutions }: ResolutionsProps) {
   const handleOptionChange = (id: number, text: string) => {
-    setOptions(prev => prev.map(opt => opt.id === id ? { ...opt, text } : opt));
+    const updatedOptions = resolutions.options.map((opt) =>
+      opt.id === id ? { ...opt, text } : opt
+    );
+    updateResolutions({ ...resolutions, options: updatedOptions });
   };
 
   const addOption = () => {
-    const newId = options.length ? Math.max(...options.map(o => o.id)) + 1 : 1;
-    setOptions([...options, { id: newId, text: "" }]);
+    const newId = resolutions.options.length
+      ? Math.max(...resolutions.options.map((o) => o.id)) + 1
+      : 1;
+    updateResolutions({
+      ...resolutions,
+      options: [...resolutions.options, { id: newId, text: "" }],
+    });
   };
 
   const removeOption = (id: number) => {
-    setOptions(options.filter(opt => opt.id !== id));
+    const updatedOptions = resolutions.options.filter((opt) => opt.id !== id);
+    updateResolutions({ ...resolutions, options: updatedOptions });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    updateResolutions({ ...resolutions, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = () => {
-    const config = {
-      title,
-      description,
-      agendaItem,
-      options: options.filter(o => o.text.trim() !== "")
-    };
-    console.log("Voting Config:", config);
+    console.log("Voting Config:", resolutions);
     // submit config logic here
   };
 
   return (
-    // <div className="max-w-xl mx-auto mt-10 p-6 rounded-2xl shadow-lg">
     <div className="w-full max-w-xl mx-auto p-4">
       <div>
-
         <div className="space-y-4">
           <div>
             <Label htmlFor="agenda">Agenda Item</Label>
-            <Select onValueChange={setAgendaItem} value={agendaItem}>
+            <Select
+              onValueChange={(value) => updateResolutions({ ...resolutions, agendaItem: value })}
+              value={resolutions.agendaItem}
+            >
               <SelectTrigger id="agenda" className="mt-2">
                 <SelectValue placeholder="Select an agenda item" />
               </SelectTrigger>
@@ -73,8 +85,8 @@ export default function Resolution() {
             <Label htmlFor="title">Title</Label>
             <Input
               id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={resolutions.title}
+              onChange={handleChange}
               placeholder="Enter resolution title"
               className="mt-2"
             />
@@ -84,22 +96,24 @@ export default function Resolution() {
             <Label htmlFor="description">Description</Label>
             <Textarea
               id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={resolutions.description}
+              onChange={handleChange}
               placeholder="Enter resolution description"
               className="mt-2"
             />
           </div>
-<Separator />
+          <Separator />
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold">Vote Options</h2>
-              <Button variant="outline" onClick={addOption}>Add Option</Button>
+              <Button variant="outline" onClick={addOption}>
+                Add Option
+              </Button>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
               Add the options that participants can vote on. For example, "Yes", "No", or any other relevant choices.
             </p>
-            {options.map((option) => (
+            {resolutions.options.map((option) => (
               <div key={option.id} className="flex items-center gap-2">
                 <Input
                   value={option.text}
@@ -118,7 +132,9 @@ export default function Resolution() {
             ))}
           </div>
 
-          <Button className="w-full mt-4" onClick={handleSubmit}>Save Configuration</Button>
+          <Button className="w-full mt-4" onClick={handleSubmit}>
+            Save Configuration
+          </Button>
         </div>
       </div>
     </div>
