@@ -4,15 +4,15 @@ import { Input } from '../../ui/input'
 import { Label } from '../../ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select'
 import { Textarea } from '../../ui/textarea'
-
-type AgendaItem = {
-  title: string
-  description: string
-  duration: number
-  presenter: string
-  priority: 'High' | 'Medium' | 'Low'
-}
-
+ 
+export type AgendaItem = {
+  title: string;
+  description: string;
+  duration: number;
+  presenter: string;
+  priority: 'High' | 'Medium' | 'Low';
+};
+ 
 function AgendaItemList({ items }: { items: AgendaItem[] }) {
   return (
     <div className="mt-6 space-y-2">
@@ -28,38 +28,37 @@ function AgendaItemList({ items }: { items: AgendaItem[] }) {
     </div>
   )
 }
-
-export default function Agenda() {
-  const [items, setItems] = useState<AgendaItem[]>([])
+ 
+export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[]; updateAgenda: (agenda: AgendaItem[]) => void }) {
   const [form, setForm] = useState({
     title: '',
     description: '',
     duration: '',
     presenter: '',
-    priority: ''
-  })
-
+    priority: '',
+  });
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+ 
   const handlePriorityChange = (value: string) => {
-    setForm({ ...form, priority: value })
-  }
-
+    setForm({ ...form, priority: value });
+  };
+ 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     const newItem: AgendaItem = {
       title: form.title,
       description: form.description,
       duration: parseInt(form.duration),
       presenter: form.presenter,
-      priority: form.priority as 'High' | 'Medium' | 'Low'
-    }
-    setItems([...items, newItem])
-    setForm({ title: '', description: '', duration: '', presenter: '', priority: '' })
-  }
-
+      priority: form.priority as 'High' | 'Medium' | 'Low',
+    };
+    updateAgenda([...agenda, newItem]);
+    setForm({ title: '', description: '', duration: '', presenter: '', priority: '' });
+  };
+ 
   return (
     <div className="w-full max-w-xl mx-auto p-4">
       <form className="space-y-4" onSubmit={handleSubmit}>
@@ -92,10 +91,11 @@ export default function Agenda() {
             </SelectContent>
           </Select>
         </div>
-        <Button type="submit" className="w-full">Save Agenda Item</Button>
+        <Button type="submit" className="w-full">Add Agenda Item</Button>
       </form>
-
-      {items.length > 0 && <AgendaItemList items={items} />}
+ 
+      {agenda.length > 0 && <AgendaItemList items={agenda} />}
     </div>
-  )
+  );
 }
+ 
