@@ -101,7 +101,7 @@ export default function Meetings() {
                       <Button
                         variant="link"
                         className="text-green-600"
-                        onClick={() => navigate(`/details-meeting/${meeting.id}`)}
+                        // onClick={() => navigate(`/details-meeting/${meeting.id}`)}
                       >
                         View
                       </Button>
