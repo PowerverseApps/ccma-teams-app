@@ -21,6 +21,7 @@ export function MainNav({
       >
         Overview
       </Button>
+
       <Button
         variant="ghost"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
@@ -28,6 +29,7 @@ export function MainNav({
       >
         Actions
       </Button>
+
       <Button
         variant="ghost"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"

@@ -13,6 +13,8 @@ import Support from "./dashboard/Support/Support";
 import MeetingsList from "./dashboard/meetings-list/meetings-list";
 import { ParticipantsPage } from "../components/details-meeting/participantsScreen";
 import { ResolutionPage } from "./details-meeting/resolution";
+import Action from "./dashboard/actions/page";
+import Calendar from "./dashboard/calendar/page";
 
 
 /**
@@ -36,8 +38,9 @@ export default function App() {
         <Route path="/details-meeting/:id/resolution" element={<ResolutionPage />} />
         <Route path="/support" element={<Support />} />
         <Route path="/meetings" element={<MeetingsList />} />
-        <Route path="/actions" element={<MeetingsList />} />
-        <Route path="/calendar" element={<MeetingsList />} />
+        <Route path="/actions" element={<Action />} />
+        <Route path="/calendar" element={<Calendar />} />
+
 
       </Routes>
     </Router>
