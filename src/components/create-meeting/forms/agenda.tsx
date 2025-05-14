@@ -25,7 +25,7 @@ function AgendaItemList({ items }: { items: AgendaItem[] }) {
           <p className="text-xs text-gray-600">Priority: {item.priority}</p>
         </div>
       ))}
-    </div>
+    </div>  
   )
 }
  
