@@ -37,19 +37,28 @@ export function MainNav({
       >
         Calendar
       </Button>
-      <Button
-        variant="ghost"
-        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-        onClick={() => navigate("/meetings")}
-      >
-        Meetings
-      </Button>
+      
       <Button
         variant="ghost"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
         onClick={() => navigate("/support")}
       >
         Support
+      </Button>
+      <Button
+        variant="ghost"
+        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        onClick={() => navigate("/support")}
+      >
+        Decision Tracker
+      </Button>
+
+      <Button
+        variant="ghost"
+        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        onClick={() => navigate("/support")}
+      >
+        Document Viewer
       </Button>
     </nav>
   )
