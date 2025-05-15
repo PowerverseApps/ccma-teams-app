@@ -1,5 +1,5 @@
 import React from "react";
-
+ 
 import { X } from "lucide-react";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
@@ -7,12 +7,12 @@ import { Label } from "../../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../ui/select";
 import { Separator } from "../../ui/separator";
 import { Textarea } from "../../ui/textarea";
-
+ 
 interface Option {
   id: number;
   text: string;
 }
-
+ 
 interface ResolutionsProps {
   resolutions: {
     title: string;
@@ -27,7 +27,7 @@ interface ResolutionsProps {
     options: Option[];
   }) => void;
 }
-
+ 
 export default function Resolution({ resolutions, updateResolutions }: ResolutionsProps) {
   const handleOptionChange = (id: number, text: string) => {
     const updatedOptions = resolutions.options.map((opt) =>
@@ -35,7 +35,7 @@ export default function Resolution({ resolutions, updateResolutions }: Resolutio
     );
     updateResolutions({ ...resolutions, options: updatedOptions });
   };
-
+ 
   const addOption = () => {
     const newId = resolutions.options.length
       ? Math.max(...resolutions.options.map((o) => o.id)) + 1
@@ -45,21 +45,21 @@ export default function Resolution({ resolutions, updateResolutions }: Resolutio
       options: [...resolutions.options, { id: newId, text: "" }],
     });
   };
-
+ 
   const removeOption = (id: number) => {
     const updatedOptions = resolutions.options.filter((opt) => opt.id !== id);
     updateResolutions({ ...resolutions, options: updatedOptions });
   };
-
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     updateResolutions({ ...resolutions, [e.target.id]: e.target.value });
   };
-
+ 
   const handleSubmit = () => {
     console.log("Voting Config:", resolutions);
     // submit config logic here
   };
-
+ 
   return (
     <div className="w-full max-w-xl mx-auto p-4">
       <div>
@@ -76,11 +76,11 @@ export default function Resolution({ resolutions, updateResolutions }: Resolutio
               <SelectContent>
                 <SelectItem value="budget">Budget Approval</SelectItem>
                 <SelectItem value="policy">Policy Update</SelectItem>
-                <SelectItem value="election">Board Election</SelectItem>
+                <SelectItem value="election">Board Electi   on</SelectItem>
               </SelectContent>
             </Select>
           </div>
-
+ 
           <div>
             <Label htmlFor="title">Title</Label>
             <Input
@@ -91,7 +91,7 @@ export default function Resolution({ resolutions, updateResolutions }: Resolutio
               className="mt-2"
             />
           </div>
-
+ 
           <div>
             <Label htmlFor="description">Description</Label>
             <Textarea
@@ -131,7 +131,7 @@ export default function Resolution({ resolutions, updateResolutions }: Resolutio
               </div>
             ))}
           </div>
-
+ 
           <Button className="w-full mt-4" onClick={handleSubmit}>
             Save Configuration
           </Button>

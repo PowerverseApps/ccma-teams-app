@@ -2,7 +2,7 @@
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../ui/select";
-
+ 
 interface MeetingDetailsProps {
   details: {
     subject: string;
@@ -16,23 +16,23 @@ interface MeetingDetailsProps {
   };
   updateDetails: (details: MeetingDetailsProps['details']) => void;
 }
-
+ 
 export function MeetingDetails({ details, updateDetails }: MeetingDetailsProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     updateDetails({ ...details, [e.target.id]: e.target.value });
   };
-
+ 
   const handleAttendeesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const emails = value.split(',').map(email => email.trim());
     const isValid = emails.every(email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email === '');
     updateDetails({ ...details, attendees: value, attendeesValid: isValid });
   };
-
+ 
   const handleSelectChange = (id: string, value: string) => {
     updateDetails({ ...details, [id]: value });
   };
-
+ 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
       <div className="p-6 space-y-4">

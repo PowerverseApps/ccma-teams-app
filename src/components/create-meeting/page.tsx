@@ -5,7 +5,7 @@ import Agenda, { AgendaItem } from './forms/agenda';
 import { MeetingDetails } from './forms/meeting-details';
 import Participants from './forms/participants';
 import Resolutions from './forms/resolutions';
-
+ 
 export default function CreateMeeting() {
   interface MeetingDataType {
     details: {
@@ -24,7 +24,7 @@ export default function CreateMeeting() {
       options: any[];
     };
   }
-
+ 
   const [meetingData, setMeetingData] = useState<MeetingDataType>({
     details: {
       subject: '',
@@ -42,19 +42,19 @@ export default function CreateMeeting() {
       options: [],
     },
   });
-
+ 
   const updateMeetingDetails = (details: MeetingDataType['details']) => {
     setMeetingData((prev) => ({ ...prev, details }));
   };
-
+ 
   const updateAgenda = (agenda: AgendaItem[]) => {
     setMeetingData((prev) => ({ ...prev, agenda }));
   };
-
+ 
   const updateResolutions = (resolutions: MeetingDataType['resolutions']) => {
     setMeetingData((prev) => ({ ...prev, resolutions }));
   };
-
+ 
   return (
     <CreateMeetingLayout>
       <div title="Meeting Details">

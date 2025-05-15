@@ -1,10 +1,10 @@
 import { format } from "date-fns";
-import { ArrowLeft } from "lucide-react"; // Import arrow icon
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "../ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
 import { MeetingProvider, useMeetings } from "./components/meeting-context";
+import { MeetingNavbar } from "./components/MeetingNavbar";
 
 export function MeetingView() {
   const { id } = useParams();
@@ -29,19 +29,10 @@ export function MeetingView() {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-3xl">
-      <div className="flex justify-between items-center mb-6">
-      <p className="text-xl font-semibold">Meeting Details</p>
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 text-primary"
-          onClick={() => navigate("/dashboard")}
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Dashboard
-        </Button>
-      </div>
-      <Card className="shadow-lg mt-4">
+    <div className="container mx-auto p-6 max-w-4xl">
+      <MeetingNavbar />
+      
+      <Card className="shadow-md mt-6">
         <CardHeader className="bg-gray-50 border-b">
           <div className="flex justify-between items-center">
             <div>
@@ -103,39 +94,11 @@ export function MeetingView() {
               </div>
             </div>
           </div>
-          
-          {meeting.Attendees && meeting.Attendees.length > 0 && (
-            <div>
-              <h3 className="font-semibold text-lg mb-3">Attendees</h3>
-              <div className="space-y-2">
-                {meeting.Attendees.map((attendee, index) => (
-                  <div key={index} className="flex flex-col sm:flex-row sm:justify-between p-3 bg-gray-50 rounded-md">
-                    <div className="font-medium">{attendee.name}</div>
-                    <div className="text-gray-600">{attendee.email}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          
-          {meeting.Agenda && meeting.Agenda.length > 0 && (
-            <div>
-              <h3 className="font-semibold text-lg mb-3">Agenda Items</h3>
-              <div className="space-y-3">
-                {meeting.Agenda.map((item, index) => (
-                  <div key={index} className="p-3 border rounded-md">
-                    <p className="font-medium">{item.agendaItemName}</p>
-                    {item.agendaItemType && <p className="text-sm text-gray-500">{item.agendaItemType}</p>}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </CardContent>
         
         <CardFooter className="bg-gray-50 border-t">
           <div className="flex w-full justify-between">
-            <Button onClick={() => navigate(`/meeting-details/${meeting.id}`)}>
+            <Button onClick={() => navigate(`/meeting-edit/${meeting.id}`)}>
               Edit Meeting
             </Button>
           </div>

@@ -4,7 +4,7 @@ import { Input } from '../../ui/input'
 import { Label } from '../../ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select'
 import { Textarea } from '../../ui/textarea'
-
+ 
 export type AgendaItem = {
   title: string;
   description: string;
@@ -12,7 +12,7 @@ export type AgendaItem = {
   presenter: string;
   priority: 'High' | 'Medium' | 'Low';
 };
-
+ 
 function AgendaItemList({ items }: { items: AgendaItem[] }) {
   return (
     <div className="mt-6 space-y-2">
@@ -25,10 +25,10 @@ function AgendaItemList({ items }: { items: AgendaItem[] }) {
           <p className="text-xs text-gray-600">Priority: {item.priority}</p>
         </div>
       ))}
-    </div>
+    </div>  
   )
 }
-
+ 
 export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[]; updateAgenda: (agenda: AgendaItem[]) => void }) {
   const [form, setForm] = useState({
     title: '',
@@ -37,15 +37,15 @@ export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[];
     presenter: '',
     priority: '',
   });
-
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
+ 
   const handlePriorityChange = (value: string) => {
     setForm({ ...form, priority: value });
   };
-
+ 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newItem: AgendaItem = {
@@ -58,7 +58,7 @@ export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[];
     updateAgenda([...agenda, newItem]);
     setForm({ title: '', description: '', duration: '', presenter: '', priority: '' });
   };
-
+ 
   return (
     <div className="w-full max-w-xl mx-auto p-4">
       <form className="space-y-4" onSubmit={handleSubmit}>
@@ -93,8 +93,9 @@ export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[];
         </div>
         <Button type="submit" className="w-full">Add Agenda Item</Button>
       </form>
-
+ 
       {agenda.length > 0 && <AgendaItemList items={agenda} />}
     </div>
   );
 }
+ 

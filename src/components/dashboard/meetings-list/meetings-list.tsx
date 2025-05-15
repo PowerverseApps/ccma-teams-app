@@ -5,7 +5,7 @@ export default function MeetingsList() {
     return (
         <MenuLayout>
             <div>
-                Hi
+                MeetingsList
             </div>
         </MenuLayout>
 

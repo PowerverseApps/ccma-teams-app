@@ -6,7 +6,7 @@ import SupportChat from './components/support-chat';
 export default function Support() {
   return (
     <MenuLayout>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <CallCentre />
         <SupportChat />
       </div>

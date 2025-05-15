@@ -1,0 +1,48 @@
+/* Sidebar.css */
+.sidebar {
+  width: 220px;
+  background-color: #f0f4f8;
+  border-right: 1px solid #ccc;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sidebar-header button {
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  border: none;
+  background-color: #0078d7;
+  color: white;
+  border-radius: 4px;
+}
+
+.sidebar-week-range {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.sidebar-weekdays {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-day {
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: default;
+}
+
+.sidebar-day.today {
+  background-color: #0078d7;
+  color: white;
+  font-weight: bold;
+}
