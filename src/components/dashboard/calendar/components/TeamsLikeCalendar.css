@@ -1,0 +1,79 @@
+.calendar-container {
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004b8d;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.add-event-form {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.add-event-form input,
+.add-event-form select,
+.datepicker {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+}
+
+.grid-header {
+  text-align: center;
+  background: #e1e8ed;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+.grid-header.today {
+  background: #cce5ff;
+}
+
+.hour-label {
+  padding: 0.5rem;
+  background: #f0f0f0;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.calendar-cell {
+  min-height: 60px;
+  border: 1px solid #ddd;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.event-box {
+  background-color: #007bff;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  position: relative;
+}
+
+.event-box.task {
+  background-color: #28a745;
+}
+
+.event-box.reminder {
+  background-color: #ffc107;
+  color: black;
+}
