@@ -15,6 +15,7 @@ import { ParticipantsPage } from "../components/details-meeting/participantsScre
 import { ResolutionPage } from "./details-meeting/resolution";
 import Action from "./dashboard/actions/page";
 import Calendar from "./dashboard/calendar/page";
+import App1 from "../components/decision-tracker/components/App";
 
 
 /**
@@ -40,6 +41,8 @@ export default function App() {
         <Route path="/meetings" element={<MeetingsList />} />
         <Route path="/actions" element={<Action />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/components" element={<App1 />} />
+
 
 
       </Routes>

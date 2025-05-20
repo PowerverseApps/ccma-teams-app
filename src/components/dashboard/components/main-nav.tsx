@@ -1,6 +1,6 @@
 import React from "react"
 import { cn } from "../../../lib/utils"
-import { Button } from "../../ui/button"
+import { Button } from "../../ui/button1"
 import { useNavigate } from "react-router-dom"
 
 export function MainNav({
@@ -51,6 +51,16 @@ export function MainNav({
       >
         Support
       </Button>
+
+      <Button
+        variant="ghost"
+        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        onClick={() => navigate("/components")}
+      >
+        Decision Tracker
+      </Button>
+
+      
     </nav>
   )
 }

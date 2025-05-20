@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #003366; /* CCMA dark blue */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+}
+ 
+.navbar-logo {
+  font-weight: bold;
+}
+ 
+.navbar-teams {
+  font-size: 1.2rem;
+}
+ 
+ 
