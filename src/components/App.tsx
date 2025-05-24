@@ -15,7 +15,7 @@ import { ParticipantsPage } from "../components/details-meeting/participantsScre
 import { ResolutionPage } from "./details-meeting/resolution";
 import Action from "./dashboard/actions/page";
 import Calendar from "./dashboard/calendar/page";
-import App1 from "../components/decision-tracker/components/App";
+import App1 from "./dashboard/decision-tracker/components/App";
 
 
 /**
