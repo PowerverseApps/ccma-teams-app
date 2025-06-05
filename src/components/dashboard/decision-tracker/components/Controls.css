@@ -5,7 +5,7 @@
 }
  
 .controls button {
-  background-color: #0055a5;
+  background-color: #01070e;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -14,7 +14,7 @@
 }
  
 .controls button:hover {
-  background-color: #0077d9;
+  background-color: #000000;
 }
  
  
