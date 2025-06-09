@@ -6,7 +6,36 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { MeetingProvider, useMeetings } from "./components/meeting-context";
 import { MeetingNavbar } from "./components/MeetingNavbar";
 
-export function MeetingView() {
+export type IResolutionItem = {
+  resolutionName: string;
+  resolutionDetails?: string;
+};
+
+export type IAgendaItem = {
+  agendaItemName: string;
+};
+
+export type IAttendee = {
+  name: string;
+  email: string;
+};
+
+export type Meeting = {
+  id: number;
+  Subject: string;
+  startDateTime: Date;
+  endDateTime: Date;
+  Description: string;
+  Agenda: IAgendaItem[];
+  Attendees: IAttendee[];
+  Recurrence?: string;
+  Location?: string;
+  Status: "draft" | "published" | "pending";
+  Priority?: "High" | "Medium" | "Low";
+  Resolutions?: IResolutionItem[];
+};
+
+export default function MeetingView() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { meetings } = useMeetings();
@@ -104,6 +133,20 @@ export function MeetingView() {
           </div>
         </CardFooter>
       </Card>
+      
+      {/* Agenda Section */}
+      {meeting.Agenda && meeting.Agenda.length > 0 && (
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold mb-4">Agenda</h2>
+          <ul className="list-disc list-inside space-y-2">
+            {meeting.Agenda.map((item, idx) => (
+              <li key={idx} className="text-gray-700">
+                {item.agendaItemName}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

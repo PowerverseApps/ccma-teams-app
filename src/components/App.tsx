@@ -6,7 +6,7 @@ import Tab from "./Tab";
 import "./../tailwind.css";
 import Dashboard from "./dashboard/page";
 import CreateMeeting from "./create-meeting/page";
-import { MeetingView } from "./details-meeting/page";
+import MeetingView from "./details-meeting/page";
 import { AgendaPage } from "../components/details-meeting/agendaScreen";
 import { MeetingProvider } from "./details-meeting/components/meeting-context";
 import Support from "./dashboard/Support/Support";
@@ -16,6 +16,26 @@ import { ResolutionPage } from "./details-meeting/resolution";
 import Action from "./dashboard/actions/page";
 import Calendar from "./dashboard/calendar/page";
 import App1 from "./dashboard/decision-tracker/components/App";
+import type { IAgendaItem, IAttendee, IResolutionItem } from "./details-meeting/components/meeting-context";
+
+
+export type Meeting = {
+  id: number;
+  AllowMic?: boolean;
+  AllowVideo?: boolean;
+  Subject: string;
+  endDateTime: Date;
+  startDateTime: Date;
+  Agenda: IAgendaItem[];
+  Attendees: IAttendee[];
+  Recurrence?: string;
+  Description: string;
+  Location?: string;
+  meetingTypeId?: any;
+  Status: "draft" | "published" | "pending";
+  Priority?: "High" | "Medium" | "Low";
+  Resolutions?: IResolutionItem[];
+};
 
 
 /**

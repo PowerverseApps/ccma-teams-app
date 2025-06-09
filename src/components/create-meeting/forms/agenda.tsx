@@ -4,7 +4,7 @@ import { Input } from '../../ui/input'
 import { Label } from '../../ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select'
 import { Textarea } from '../../ui/textarea'
- 
+
 export type AgendaItem = {
   title: string;
   description: string;
@@ -12,7 +12,7 @@ export type AgendaItem = {
   presenter: string;
   priority: 'High' | 'Medium' | 'Low';
 };
- 
+
 function AgendaItemList({ items }: { items: AgendaItem[] }) {
   return (
     <div className="mt-6 space-y-2">
@@ -28,7 +28,7 @@ function AgendaItemList({ items }: { items: AgendaItem[] }) {
     </div>  
   )
 }
- 
+
 export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[]; updateAgenda: (agenda: AgendaItem[]) => void }) {
   const [form, setForm] = useState({
     title: '',
@@ -37,15 +37,16 @@ export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[];
     presenter: '',
     priority: '',
   });
- 
+  const [showNotification, setShowNotification] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
- 
+
   const handlePriorityChange = (value: string) => {
     setForm({ ...form, priority: value });
   };
- 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newItem: AgendaItem = {
@@ -57,10 +58,24 @@ export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[];
     };
     updateAgenda([...agenda, newItem]);
     setForm({ title: '', description: '', duration: '', presenter: '', priority: '' });
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 2000);
   };
- 
+
   return (
-    <div className="w-full max-w-xl mx-auto p-4">
+    <div className="w-full max-w-xl mx-auto p-4 relative">
+      {/* Notification Popup */}
+      {showNotification && (
+        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="bg-green-100 border border-green-300 text-green-800 px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2 transition-all duration-300 animate-fade-in">
+            <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Agenda item added successfully!</span>
+          </div>
+        </div>
+      )}
+
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <Label htmlFor="agenda-title">Title</Label>
@@ -93,9 +108,19 @@ export default function Agenda({ agenda, updateAgenda }: { agenda: AgendaItem[];
         </div>
         <Button type="submit" className="w-full">Add Agenda Item</Button>
       </form>
- 
+
       {agenda.length > 0 && <AgendaItemList items={agenda} />}
+
+      {/* Tailwind animation for fade-in */}
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(-10px);}
+          to { opacity: 1; transform: translateY(0);}
+        }
+        .animate-fade-in {
+          animation: fade-in 0.4s ease;
+        }
+      `}</style>
     </div>
   );
 }
- 
